@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt 
 import matplotlib.animation as animation
 
+#referencia https://matplotlib.org/api/animation_api.html
+
 pinocho=np.loadtxt("datos.dat")
 
 N=len(pinocho[0])
@@ -16,12 +18,12 @@ def init():
     ax.set_xlabel("Posicion [Metros]")
     ax.set_ylabel("U")
     ax.set_xlim(0, 1)
-    ax.set_ylim(-0.5, 0.5)
+    ax.set_ylim(-0.05, 0.05)
     return ln,
 
 def animate(i):
     ln.set_ydata(pinocho[i])
-    ax.set_title("Tiempo: "+ str("{0:.2f}".format(2*i/(N-1)))+ " segundos")
+    ax.set_title("Tiempo: "+ str("{0:.2f}".format(2*i/(N-1)))+ "segundos")
     return ln,
 
 ani = animation.FuncAnimation(fig, animate, init_func=init, interval=100,frames=range(N), blit=True,repeat=True)
